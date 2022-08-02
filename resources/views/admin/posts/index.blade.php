@@ -2,9 +2,10 @@
 
 @section('mainContent')
     @if (session('deleted'))
-        <div class="alert alert-error">
-            {{ session('deleted') }}
-        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {!! session('deleted') !!}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
     @endif
     <h1>Posts</h1>
     <table class="table table-striped">

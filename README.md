@@ -91,3 +91,38 @@
     - una sottocartella guests
 1. spostare **home.blade.php** dentro admin e rinominarlo in **dashboard.blade.php** o comunquer rinominare i file con nomi chiari
 1. aggiornare i vecchi nomi dei template blade ovunque erano stai usati (controllers, web.php, altri template blade ...)
+
+## Parte Vue
+1. Nel **webpack.mix.js** aggiungere ```mix.js('resources/js/front.js', 'public/js')```
+1. Creare il file **front.js** in **resources/js**
+1. Avviare (o riavviare) ```npm run watch```
+1. Nel file **front.js** scrivere il codice per connettere Vue alla pagina:
+    ```js
+    require('./bootstrap');
+
+    window.Vue = require('vue'); // importiamo la libreria Vue
+    import App from './components/App.vue'; // importiamo il componente base App.vue e lo assegniamo alla variabile App
+
+    // inizializziamo l'applicazione Vue passandogli l'oggetto di inizializzazione
+    const app = new Vue({
+        el: '#root', // id del componente nel file HTML dentro il quale opererà Vue
+        render: h => h(App) // monta il componente App nell'elemento root
+    });
+    ```
+1. Creare o modificare il template blade che gestirà la pagina (**guest/home.blade.php**)
+1. Svuotare il body e mettere l'elemento vuoto root per Vue e l'importazione del file **front.js**:
+    ```html
+    <body>
+        <div id="root"></div>
+
+        <script src="{{ asset('js/front.js') }}"></script>
+    </body>
+    });
+    ```
+1. Verificare che in **routes/web.php** abbiamo la rotta '/' che punta a 'guest.home' (parte che potremmo dover modificare)
+1. Svuotare la cartella **resources/js/components** se esiste oppure crearla
+1. Creare il componente **App.vue** nella stessa cartella (**resources/js/components**)
+1. Ed ora scrivere tutto il front office
+
+## Laravel API
+1. ...
